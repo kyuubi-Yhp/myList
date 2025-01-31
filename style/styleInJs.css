@@ -1,0 +1,23 @@
+.block__form-insideJS {
+  position: relative;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  width: calc(100% - 10px);
+  height: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.check__point {
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.cross__for-close {
+  cursor: pointer;
+  width: 20px;
+  position: absolute;
+  right: 20px;
+}
