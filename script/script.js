@@ -5,28 +5,28 @@ const btnSend = document.querySelector('.btn__send-js')
 const dataOutputBlock = document.querySelector('.noties__list-js')
 
 // кнопка отправки введенных данных в массив и блок html
-btnSend.addEventListener('click', function() {
-const post = getNameForUser()
-if (post.namee) {
-  addPost(post)
-  renderPost()
-  clearFormInput()
-} else {
-  alert('значение не задано')
-}
+btnSend.addEventListener('click', function () {
+  const post = getNameForUser()
+  if (post.textInside) {
+    addPost(post)
+    renderPost()
+    clearFormInput()
+  } else {
+    alert('значение не задано')
+  }
 })
 
 // функция получения от пользователя данных из инпута возвращает сразу обьект
 function getNameForUser() {
   const inputMeaning = inputUser.value
   return {
-    namee: inputMeaning
+    textInside: inputMeaning
   }
 }
 // добавить данные от пользователя в массив
-function addPost(namee) {
+function addPost(textInside) {
   arrayData.push(
-    namee
+    textInside
   )
 }
 // функция которая передает массив при ее вызове 
@@ -38,42 +38,54 @@ function getMassive() {
 //функция которая получает массив и создает структуру html из данных в массиве перебором массива
 function renderPost() {
   const arrayDataInsideF = getMassive()
-  
+
   let addHtml = ''
-  
+
   arrayDataInsideF.forEach(sou => {
     addHtml += `
     <div class="block__form-insideJS">
     <input class="check__point" type="radio">
-    <p>${sou.namee}</p>
+    <p>${sou.textInside}</p>
     <img class="cross__for-close cross-js" src="img/close.png" alt="cross">
     </div>`
   })
   dataOutputBlock.innerHTML = addHtml
-  }
+}
 
-  // делегирование событий на родительский эллемент 
-dataOutputBlock.addEventListener('click', function(event) {
+// делегирование событий на родительский эллемент 
+dataOutputBlock.addEventListener('click', function (event) {
   if (event.target.classList.contains('cross-js')) {
-      const nameToDelete = event.target.parentElement.querySelector('p').textContent;
-      deletePost(nameToDelete);
-      renderPost();
+    const nameToDelete = event.target.parentElement.querySelector('p').textContent;
+    deletePost(nameToDelete);
+    renderPost()
   }
 });
+
+
 // функция удаления обьекта из массива 
-function deletePost(namee) {
-  const index = arrayData.findIndex(item => item.namee === namee);
-  if (index !== -1) {
-      arrayData.splice(index, 1); // Удаляем элемент по индексу
+function deletePost(postOnDeleting) {
+  const indexInArray = arrayData.findIndex(item => item.textInside === postOnDeleting);
+  if (indexInArray !== -1) {
+    arrayData.splice(indexInArray, 1); // Удаляем элемент по индексу
   } else {
-      alert('Имя не найдено в списке.');
+    alert('Имя не найдено в списке.');
   }
 }
 
+dataOutputBlock.addEventListener('click', function (event) {
+  if (event.target.classList.contains('check__point')) {
+    checkedActiveInputRadio(event.target)
+  } else {
+    console.log('значение не найдено в списке')
+  }
+})
 
 
-
-
+function checkedActiveInputRadio(check) {
+  const parent = check.parentElement
+  // parent.style.background = 'green'
+  parent.style.opacity = '0.5' 
+}
 
 
 

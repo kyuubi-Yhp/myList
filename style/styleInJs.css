@@ -7,6 +7,7 @@
   height: 30px;
   background-color: #fff;
   border-radius: 10px;
+  transition: opacity 1s ease;
 }
 
 .check__point {
@@ -21,3 +22,4 @@
   position: absolute;
   right: 20px;
 }
+
