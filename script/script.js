@@ -1,15 +1,22 @@
-const arrayData = []
+let dataLc = localStorage.getItem('myListdata')
+
+let arrayData = []
 
 const inputUser = document.querySelector('.input__name-js')
 const btnSend = document.querySelector('.btn__send-js')
 const dataOutputBlock = document.querySelector('.noties__list-js')
 
+if (dataLc !== '' && dataLc !== null) {
+  arrayData = JSON.parse(dataLc)
+}
+renderPost()
 // кнопка отправки введенных данных в массив и блок html
 btnSend.addEventListener('click', function () {
   const post = getNameForUser()
   if (post.textInside) {
     addPost(post)
     renderPost()
+    localStorage.setItem('myListdata', JSON.stringify(arrayData))
     clearFormInput()
   } else {
     alert('значение не задано')
@@ -29,6 +36,7 @@ function addPost(textInside) {
     textInside
   )
 }
+
 // функция которая передает массив при ее вызове 
 //(он может быть обновлен и каждый раз вызываяэту функцию будут актуальные значения)
 function getMassive() {
@@ -41,11 +49,11 @@ function renderPost() {
 
   let addHtml = ''
 
-  arrayDataInsideF.forEach(sou => {
+  arrayDataInsideF.forEach(item => {
     addHtml += `
     <div class="block__form-insideJS">
-    <input class="check__point" type="radio">
-    <p>${sou.textInside}</p>
+    <input class="check__point" type="checkbox">
+    <p>${item.textInside}</p>
     <img class="cross__for-close cross-js" src="img/close.png" alt="cross">
     </div>`
   })
@@ -67,6 +75,7 @@ function deletePost(postOnDeleting) {
   const indexInArray = arrayData.findIndex(item => item.textInside === postOnDeleting);
   if (indexInArray !== -1) {
     arrayData.splice(indexInArray, 1); // Удаляем элемент по индексу
+    localStorage.setItem('myListdata', JSON.stringify(arrayData))
   } else {
     alert('Имя не найдено в списке.');
   }
@@ -96,30 +105,8 @@ function checkedActiveInputRadio(check) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function clearFormInput() {
   inputUser.value = ''
 }
+
+
