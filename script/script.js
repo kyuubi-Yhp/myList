@@ -6,6 +6,7 @@ const inputUser = document.querySelector('.input__name-js')
 const btnSend = document.querySelector('.btn__send-js')
 const dataOutputBlock = document.querySelector('.noties__list-js')
 
+
 if (dataLc !== '' && dataLc !== null) {
   arrayData = JSON.parse(dataLc)
 }
