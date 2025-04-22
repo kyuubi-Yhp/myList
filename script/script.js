@@ -26,10 +26,11 @@ btnSend.addEventListener('click', function () {
 
 // функция получения от пользователя данных из инпута возвращает сразу обьект
 function getNameForUser() {
-  const inputMeaning = inputUser.value
+  const inputMeaning = inputUser.value;
   return {
-    textInside: inputMeaning
-  }
+    textInside: inputMeaning,
+    checked: false
+  };
 }
 // добавить данные от пользователя в массив
 function addPost(textInside) {
@@ -52,10 +53,10 @@ function renderPost() {
 
   arrayDataInsideF.forEach(item => {
     addHtml += `
-    <div class="block__form-insideJS">
-    <input class="check__point" type="checkbox">
-    <p>${item.textInside}</p>
-    <img class="cross__for-close cross-js" src="img/close.png" alt="cross">
+    <div class="block__form-insideJS" style="opacity: ${item.checked ? '0.5' : '1'}">
+      <input class="check__point" type="checkbox" ${item.checked ? 'checked' : ''}>
+      <p>${item.textInside}</p>
+      <img class="cross__for-close cross-js" src="img/close.png" alt="cross">
     </div>`
   })
   dataOutputBlock.innerHTML = addHtml
@@ -93,8 +94,15 @@ dataOutputBlock.addEventListener('click', function (event) {
 
 function checkedActiveInputRadio(check) {
   const parent = check.parentElement
-  // parent.style.background = 'green'
-  parent.style.opacity = '0.5' 
+  const taskText = parent.querySelector('p').textContent
+
+  const task = arrayData.find(item => item.textInside === taskText)
+  if (task) {
+    task.checked = check.checked // обновляем значение
+    localStorage.setItem('myListdata', JSON.stringify(arrayData)) // сохраняем
+  }
+
+  parent.style.opacity = check.checked ? '0.5' : '1'
 }
 
 

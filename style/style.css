@@ -1,17 +1,21 @@
 @import "styleInJs.css";
 
 body {
-  background-color: rgb(53, 24, 95);
+  color: #303C54;
+  background-color: #303C54;
 }
 
 .container {
-  border: 3px solid #f53636;
+  background-color: #5D7889;
   width: 500px;
   min-height: 500px;
-  margin: 0 auto;
+  margin: 10% auto;
+  border-radius: 20px;
 }
 
 .form__for-list {
+  background-color: #5D7889;
+  border-radius: 20px;
   margin-bottom: 30px;
   position: relative;
   display: flex;
@@ -19,24 +23,29 @@ body {
 }
 
 .form__input {
+  display: flex;
+  justify-content: center;
+  background-color: #5D7889;
+  border-radius: 20px;
   position: relative;
   padding-top: 20px;
 }
 
 .input__name {
+  background-color: #DBC5D1;
   padding: 0 0 0 15px;
   color: white;
-  width: 100%;
+  width: 90%;
   height: 31px;
   border-radius: 20px;
-  background-color: #0c0c38;
 }
 
 .btn__send {
+  background-color: #C38DAE;
   width: 80px;
   height: 25px;
   position: absolute;
-  right: 10px;
+  right: 30px;
   top: 23px;
   border-radius: 20px;
   transition: all 0.5s;
@@ -51,7 +60,9 @@ body {
   top: 65px;
   left: 10px;
   width: calc(100% - 20px);
-  border: 2px solid #42176b;
+  border: 2px solid #C38DAE
+
+  ;
   border-radius: 50px;
 }
 
